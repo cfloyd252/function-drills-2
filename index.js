@@ -1,10 +1,16 @@
 /* eslint-disable no-console */
 'use strict';
 
-function jediName(firstName, lastName) {
-  return (`${lastName.slice(0,3)}${firstName.slice(0,2)}`);
+function beyond (num) {
+  if (num === Infinity || num === -Infinity) {
+    console.log('And beyond');
+  } else if (num > 0) {
+    console.log('To infinity');
+  } else if (num < 0) {
+    console.log('To negative infinity');
+  } else if (num === 0) {
+    console.log('Stay home');
+  }
 }
 
-const myJediName = jediName('Beyonce','Knowles');
-
-console.log(myJediName);
+beyond(0);
