@@ -1,45 +1,25 @@
 /* eslint-disable no-console */
 'use strict';
 
-function generateDaysInMonth(month, leapYear = false) {
-  let description;
-
-  switch(month.toLowerCase()) {
-  case 'january':
-  case 'march':
-  case 'may':
-  case 'july':
-  case 'august':
-  case 'october':
-  case 'december':
-    description = `There are 31 days in ${month.toUpperCase()}`;
-    break;
-  
-  case 'april':
-  case 'june':
-  case 'september':
-  case 'november':
-    description = `There are 30 days in ${month.toUpperCase()}`;
-    break;
-
-  case 'february':
-    if (leapYear) {
-      return description = 'There are 29 days in February';
-    }
-
-    description = 'There are 28 days in February';
-    break;
-
-  default:
-    throw new Error('Must provide a valid month.');
+function playRockPaperScissors(num) {
+  if (num > 3 || num < 1) {
+    throw new Error('Must input number from 1 - 3');
   }
 
-  return description;
+  const randomNo = Math.floor(Math.random() * 3) + 1;
+  console.log(randomNo);
+
+  if (num === randomNo + 1 || num === 1 && randomNo === 3) {
+    console.log ('You Win')
+  } else if (num === randomNo - 1 || num === 3 && randomNo === 1) {
+    console.log('You Lose');
+  } else if (num === randomNo) {
+    console.log('It\'s a tie');
+  }
 }
 
 try {
-  const description = generateDaysInMonth('june');
-  console.log(description);
+  playRockPaperScissors(3);
 } catch (err) {
   console.error(err.message);
 }
