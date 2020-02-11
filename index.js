@@ -1,28 +1,45 @@
 /* eslint-disable no-console */
 'use strict';
 
-function decode (encodedWord) {
-  const firstLetter = encodedWord.slice(0,1);
-  if (firstLetter === 'a') {
-    return encodedWord.slice(1, 2);
-  } else if (firstLetter === 'b') {
-    return encodedWord.slice(2,3);
-  } else if (firstLetter === 'c') {
-    return encodedWord.slice(3,4);
-  } else if (firstLetter === 'd') {
-    return encodedWord.slice(4,5);
-  } else {
-    return ' ';
+function generateDaysInMonth(month, leapYear = false) {
+  let description;
+
+  switch(month.toLowerCase()) {
+  case 'january':
+  case 'march':
+  case 'may':
+  case 'july':
+  case 'august':
+  case 'october':
+  case 'december':
+    description = `There are 31 days in ${month.toUpperCase()}`;
+    break;
+  
+  case 'april':
+  case 'june':
+  case 'september':
+  case 'november':
+    description = `There are 30 days in ${month.toUpperCase()}`;
+    break;
+
+  case 'february':
+    if (leapYear) {
+      return description = 'There are 29 days in February';
+    }
+
+    description = 'There are 28 days in February';
+    break;
+
+  default:
+    throw new Error('Must provide a valid month.');
   }
+
+  return description;
 }
 
-const craft = decode('craft');
-const block = decode('block');
-const argon = decode('argon');
-const meter = decode('meter');
-const bells = decode('bells');
-const brown = decode('brown');
-const croon = decode('croon');
-const droop = decode('droop');
-
-console.log(craft,block,argon,meter,bells,brown,croon,droop);
+try {
+  const description = generateDaysInMonth('june');
+  console.log(description);
+} catch (err) {
+  console.error(err.message);
+}
